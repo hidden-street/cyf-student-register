@@ -60,6 +60,8 @@ const apiLimiter = rateLimit({
 // update class
 // delete class
 
+app.use('/api/auth', userRoutes);
+
 app.use(express.json());
 
 
