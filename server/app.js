@@ -26,8 +26,6 @@ mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.e
     console.error(error);
   });
 
-
-
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -49,6 +47,18 @@ const apiLimiter = rateLimit({
   })
 
 // put routes here for now - I have already created user sign up and login look in controllers/ routes and middleware
+// get users
+// get user by id
+// get user by type
+// update user
+// delete user
+// create user
+
+// create class
+// get classes
+// get class by DATE?
+// update class
+// delete class
 
 app.use(express.json());
 
