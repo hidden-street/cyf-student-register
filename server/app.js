@@ -10,7 +10,7 @@ const rateLimit = require('express-rate-limit')
 
 const app = express();
 app.use(helmet());
-
+const userRoutes = require('./routes/user');
 app.use((req, res, next) => {
   res.removeHeader("Cross-Origin-Embedder-Policy");
   next();
