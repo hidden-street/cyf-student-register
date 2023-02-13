@@ -5,12 +5,13 @@ const path = require("path");
 const helmet = require("helmet");
 var dotenv = require('dotenv');
 dotenv.config();
-const rateLimit = require('express-rate-limit')
+const rateLimit = require('express-rate-limit');
 
 
 const app = express();
 app.use(helmet());
 const userRoutes = require('./routes/user');
+
 app.use((req, res, next) => {
   res.removeHeader("Cross-Origin-Embedder-Policy");
   next();
