@@ -1,7 +1,6 @@
-
 const express = require('express');
 const mongoose = require('mongoose');
-const path = require("path");
+
 const helmet = require("helmet");
 var dotenv = require('dotenv');
 dotenv.config();
@@ -47,24 +46,9 @@ const apiLimiter = rateLimit({
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
   })
 
-// put routes here for now - I have already created user sign up and login look in controllers/ routes and middleware
-// get users
-// get user by id
-// get user by type
-// update user
-// delete user
-// create user
-
-// create class
-// get classes
-// get class by DATE?
-// update class
-// delete class
-
-app.use('/api/auth', userRoutes);
 
 app.use(express.json());
 
+app.use("/api/auth", userRoutes);
 
-module.exports = app;
-
+module.exports = app
