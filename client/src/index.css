@@ -25,6 +25,9 @@ body {
   min-height: 100vh; 
   padding: 1rem 0.5rem;
 }
+h1{
+  font-weight: 900;
+}
 
 section {
     width: 100%;
@@ -34,7 +37,8 @@ section {
     flex-direction: column;
     justify-content: flex-start;
     padding: 1rem;
-    background-color: rgb(255, 226, 226);
+    background-color: #fff;
+    
 }
 
 form {
@@ -62,10 +66,15 @@ textarea {
 label,
 button {
   margin-top: 1rem;
+  color: black;
 }
 
 button {
   padding: 0.5rem;
+}
+
+.sign-up-button{
+  background-color: #d12f2f
 }
 
 .instructions {
@@ -113,3 +122,10 @@ button {
     display: inline-block;
 }
 
+.img {
+  position: relative;
+  top: -10px;
+  left: 0px;
+  width: 420px;
+  height: 100px;
+}
