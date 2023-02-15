@@ -10,6 +10,7 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 app.use(helmet());
 const userRoutes = require('./routes/user');
+const classRoutes = require('./routes/class');
 
 app.use((req, res, next) => {
   res.removeHeader("Cross-Origin-Embedder-Policy");
@@ -50,5 +51,6 @@ const apiLimiter = rateLimit({
 app.use(express.json());
 
 app.use("/api/auth", userRoutes);
+app.use("/api/class", classRoutes)
 
 module.exports = app
