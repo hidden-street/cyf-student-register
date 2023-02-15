@@ -1,12 +1,12 @@
-import "./App.css";
+import Register from './Register';
+import Login from './Login';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>CYF Attendance register</h1>
-      </header>
-    </div>
+    <main className="App">
+      <Login />
+    </main>
   );
 }
 
