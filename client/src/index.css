@@ -55,6 +55,7 @@ a, a:visited {
 
 input[type="text"],
 input[type="password"],
+input[type="email"],
 button,
 textarea {
   font-family: 'Nunito', sans-serif;
@@ -72,7 +73,12 @@ button {
 button {
   padding: 0.5rem;
 }
-
+.title-bh1{
+  justify-content: center;
+  align-self: center;
+  font-weight: 700;
+  font-size: 30px;
+}
 .sign-up-button{
   background-color: #d12f2f
 }

@@ -1,4 +1,4 @@
-import Register from './Register';
+import Login from './Login';
 import "./index.css";
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
   return (
     <main className="App">
     <img src ="/img/images.jpg" alt="cyf logo"  className="img" />
-    <Register />
+    <Login/>
     </main>
   );
 }
