@@ -45,6 +45,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use("/api/auth", userRoutes);
-app.use("/api/class", classRoutes)
+app.use("/api/classes", classRoutes);
 
 module.exports = app
