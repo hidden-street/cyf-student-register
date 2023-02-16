@@ -28,10 +28,11 @@ exports.getOneClass = (req, res, next) => {
 
 exports.createClass = (req, res, next) => {
 	// req.body.class = JSON.parse(req.body.newClass);
-	const newClass = new Class({
+	let newClass = new Class({
+		classId: req.body.classId,
 		name: req.body.name,
 		time: req.body.time,
-		// date: req.body.newClass.date
+		date: req.body.date
 	})
 	newClass.save()
 	.then(() =>{

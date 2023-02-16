@@ -1,26 +1,17 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
-const user = require('./user');
+// const uniqueValidator = require('mongoose-unique-validator');
+// const user = require('./user');
 
 const classSchema = mongoose.Schema({
-name: { type: String, required: true, unique: true },
+classId: { type: Number, required: true},
+name: { type: String, required: true },
 time: { type: String, required: true},
-// date: { type: Date, required: true },
+date: { type: Date, required: true },
 // try this way first
-students: {type: String}
-// students:[{
-//     id: {type: String, required: true, unique: true},
-//     date:{
-//          type:Date,
-//          default:Date.now,
-//      },
-// }]
-}
-// , {
-// usePushEach: true
-// }
-);
+// students: [{type: String, required: false}]
 
-classSchema.plugin(uniqueValidator);
+});
+
+// classSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('Class', classSchema)
