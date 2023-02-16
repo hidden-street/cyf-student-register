@@ -7,23 +7,58 @@ exports.classSignIn = (req, res, next) => {
 
 // getAllClasss
 exports.getAllClasses = (req, res, next) => {
-   console.log('get all classes is working')
+   Class.find()
+   .then((classes) => {res.status(200).json(classes);
+   })
+   .catch((error) => {res.status(400).json({error: error,});
+   });
 }
 
 // getOneClass
 exports.getOneClass = (req, res, next) => {
-	console.log('one class is working')
+	Class.findOne({_id: req.params.id})
+	.then((found) => {res.send(200).json(found);
+   })
+   .catch((error) => {res.status(400).json({error: error,});
+   });
+	
 }
 
 // createClass
+
 exports.createClass = (req, res, next) => {
-	console.log('create a class is working')
+	// req.body.class = JSON.parse(req.body.newClass);
+	const newClass = new Class({
+		name: req.body.name,
+		time: req.body.time,
+		// date: req.body.newClass.date
+	})
+	newClass.save()
+	.then(() =>{
+		res.status(201).json({
+			message: "class saved successfully",
+		});
+	})
+	.catch((error) =>{
+		res.status(400).json({
+			error: error,
+		})
+	})
 }
 
 // delete a Class
 exports.deleteClass = (req, res, next) => {
-	console.log('delete class is working')
-};
+	Class.findOne({ _id: req.params.id })
+	.then((found) => {
+			Class.deleteOne({ _id: req.params.id })
+			.then(() => {
+				res.status(200).json({ message: `${found.name} has been deleted`});
+				})
+				.catch((error) => {
+					res.status(400).json({ error: error,});
+				});
+		});
+	};
 
 
 // modify Class
