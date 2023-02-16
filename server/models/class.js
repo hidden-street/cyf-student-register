@@ -8,7 +8,7 @@ name: { type: String, required: true },
 time: { type: String, required: true},
 date: { type: Date, required: true },
 // try this way first
-// students: [{type: String, required: false}]
+students: [{type: String, required: false}]
 
 });
 

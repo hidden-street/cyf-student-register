@@ -25,9 +25,7 @@ exports.getOneClass = (req, res, next) => {
 }
 
 // createClass
-
 exports.createClass = (req, res, next) => {
-	// req.body.class = JSON.parse(req.body.newClass);
 	let newClass = new Class({
 		classId: req.body.classId,
 		name: req.body.name,
