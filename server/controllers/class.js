@@ -1,8 +1,13 @@
+const { Timestamp } = require('bson');
+const { timeStamp } = require('console');
 const Class = require('../models/class');
 
 // sign into class
 exports.classSignIn = (req, res, next) => {
-	let user = req.body.name
+	let user = {name: req.body, 
+		logintime: new Date(Date.now())
+	}
+
 
 	Class.findOne({ _id: req.params.id })
 	  .then((todaysclass) => {
