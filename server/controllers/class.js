@@ -2,7 +2,18 @@ const Class = require('../models/class');
 
 // sign into class
 exports.classSignIn = (req, res, next) => {
-	console.log('hello')
+	let user = req.body.name
+
+	Class.findOne({ _id: req.params.id })
+	  .then((todaysclass) => {
+		//If user has not logged in
+		if (!todaysclass.students.includes(user)) {
+			todaysclass.students.push(user);
+		}
+		todaysclass.save()
+		.then((todaysclass) => res.status(200).json({todaysclass}))
+		.catch((error) => res.status(400).json({ error: error }));
+	  })
 };
 
 // getAllClasss
