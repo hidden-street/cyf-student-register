@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect, useContext } from "react";
-import { Link } from 'react-router-dom';
 import axios from "./Api/axios";
 import AuthContext from "./context/AuthProvider";
 
@@ -15,45 +14,43 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
+  const [validUsers, setValidUsers] = useState([]);
+
   useEffect(() => {
     userRef.current.focus();
+    // Load valid users from JSON file
+    fetch("/credentials.json")
+      .then((response) => response.json())
+      .then((data) => setValidUsers(data))
+      .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
     setErrMsg("");
   }, [user, pwd]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
- 
-    try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ user, pwd, roles, accessToken });
+
+    setErrMsg("");
+
+    // Check if user credentials are valid
+    const validUser = validUsers.find((u) => u.user === user && u.pwd === pwd);
+
+    if (validUser) {
+      // if user credentials are valid
+      setAuth({
+        user: validUser.user,
+        pwd: validUser.pwd,
+        roles: ["user"],
+        accessToken: "fake_access_token",
+      });
       setUser("");
       setPwd("");
       setSuccess(true);
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
-      }
-      errRef.current.focus();
+    } else {
+      // User credentials are invalid
+      setErrMsg("Invalid credentials. Please try again.");
     }
   };
 
@@ -64,7 +61,8 @@ const Login = () => {
           <h1>You are logged in!</h1>
           <br />
           <p>
-            <a href="#">Go to Home</a>
+            <b>Successful Entry</b>
+            {/* <a href="#">Go to Home</a> */}
           </p>
         </section>
       ) : (
@@ -76,9 +74,13 @@ const Login = () => {
           >
             {errMsg}
           </p>
-          <h1><b>#We are here</b></h1>
+          <h1>
+            <b>#We are here</b>
+          </h1>
           <br />
-          <p className = "title-bh1"><u>Student Login</u></p>
+          <p className="title-bh1">
+            <u>Student Login</u>
+          </p>
           <form onSubmit={handleSubmit}>
             <label htmlFor="username">Username:</label>
             <input
@@ -104,9 +106,7 @@ const Login = () => {
           <p>
             Need an Account?
             <br />
-            <span className="line">
-            <Link to="/signup">Sign Up</Link>
-            </span>
+            <i>Click on the button below to sign up</i>
           </p>
         </section>
       )}
