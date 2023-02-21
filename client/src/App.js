@@ -1,14 +1,24 @@
-import React from 'react';
-import "./App.css";
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Login from "./Login";
+import Register from "./Register";
+import "./index.css";
 
 function App() {
+  const [showLogin, setShowLogin] = useState(true);
+
+  const handleShowLogin = () => {
+    setShowLogin((prevShowLogin) => !prevShowLogin);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>CYF Attendance register</h1>
-        <h1>Hello CYF!!!!!</h1>
-      </header>
-    </div>
+    <main className="App">
+      <img src="/img/images.jpg" alt="cyf logo" className="img" />
+      {showLogin ? <Login /> : <Register />}
+      <button onClick={handleShowLogin}>
+        {showLogin ? "Show Register" : "Show Login"}
+      </button>
+    </main>
   );
 }
 
