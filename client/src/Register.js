@@ -128,11 +128,11 @@ const Register = () => {
             <label htmlFor="username">
               Username:
               <FontAwesomeIcon
-                // icon={faCheck}
+                icon={faCheck}
                 className={validName ? "valid" : "hide"}
               />
               <FontAwesomeIcon
-                // icon={faTimes}
+                icon={faTimes}
                 className={validName || !user ? "hide" : "invalid"}
               />
             </label>
