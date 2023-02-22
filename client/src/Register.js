@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+ import React,{ useRef, useState, useEffect } from "react";
 import {
   faCheck,
   faTimes,
@@ -82,9 +82,6 @@ const Register = () => {
           withCredentials: true,
         }
       );
-      console.log(response?.data);
-      console.log(response?.accessToken);
-      console.log(JSON.stringify(response));
       setSuccess(true);
       //clear state and controlled inputs
       //need value attrib on inputs for this
@@ -131,11 +128,11 @@ const Register = () => {
             <label htmlFor="username">
               Username:
               <FontAwesomeIcon
-                icon={faCheck}
+                // icon={faCheck}
                 className={validName ? "valid" : "hide"}
               />
               <FontAwesomeIcon
-                icon={faTimes}
+                // icon={faTimes}
                 className={validName || !user ? "hide" : "invalid"}
               />
             </label>
@@ -301,5 +298,4 @@ const Register = () => {
     </>
   );
 };
-
 export default Register;
